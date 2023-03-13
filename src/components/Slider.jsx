@@ -34,6 +34,7 @@ const Wrapper = styled.div`
     display: flex;
     transition: all 1.5s ease;
     transform: translateX(${(props) => props.slideIndex * -100}vw);
+    background-color: ${props => props.bg}
 `;
 
 const Slide = styled.div`
@@ -41,7 +42,7 @@ const Slide = styled.div`
     align-items: center;
     width: 100vw;
     height: 100
-    background-color: #${props => props.bg}
+    background-color: ${props => props.bg}
 `;
 const ImgContainer = styled.div`
     flex: 1;
@@ -91,20 +92,21 @@ const Slider = () => {
             <Arrow direction="left" onClick={()=> handleClick("left") }>
             <ArrowLeftOutlined />
             </Arrow>
-            <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map((item) => (
-                <Slide bg={item.bg}>
-                    <ImgContainer>
-                        <Image src={image} alt= "image" />
-                    </ImgContainer>
-                    <InfoContainer>
-                        <Title>{item.title}</Title>
-                        <Desc>{item.desc}</Desc>
-                        <Button>Know More</Button>
-                    </InfoContainer>
-                </Slide>
+                <Wrapper slideIndex={slideIndex} bg={item.bg}>
+                    <Slide bg={item.bg}>
+                        <ImgContainer>
+                            <Image src={image} alt= "image" />
+                        </ImgContainer>
+                        <InfoContainer>
+                            <Title>{item.title}</Title>
+                            <Desc>{item.desc}</Desc>
+                            <Button>Know More</Button>
+                        </InfoContainer>
+                    </Slide>
+                </Wrapper>
                 ))}
-            </Wrapper>
+          
             <Arrow direction="right"  onClick={()=> handleClick("right") }>
                 <ArrowRightOutlined />
             </Arrow>
